@@ -1,0 +1,62 @@
+/*
+*
+*   ImageSection
+*
+*/
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.imageSection{
+    background-color: var(--less-blackish);
+    color: white;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 18px;
+}
+
+.imageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.imageContainer img{
+    width: 100%;
+    height: auto;
+    object-fit:fill;
+    aspect-ratio: 3/3;
+}
+
+.detailsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.imageSection h1{
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+    color: var(--crimson);
+    margin-top: 0px;
+    margin-bottom: 80px;
+}
+
+.imageSection h2{
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.imageSection p{
+    width: 80%;
+    margin: 0px auto;
+    font-size:large;
+}

@@ -1,0 +1,33 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blackish);
+    height: 90px;
+}
+
+.navbar ul{
+    color: white;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    height: 100%;
+    padding:0px;
+}
+
+.navbar li{
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar li:hover{
+    color: var(--crimson);
+}
+
+.active{
+    color: var(--crimson);
+}
