@@ -1,20 +1,24 @@
 import '../assets/css/navbar.css'
-export default function NavBar(){
-    return(
+import { Link } from 'react-router-dom'
+
+export default function NavBar(props) {
+    const links=['links','links','links','links'];
+    links[props.index] += ' active';
+    return (
         <>
             <div className="navbar">
                 <ul>
-                    <li className="active">
-                        HOME
+                    <li >
+                        <Link to='/' className={links[0]}>HOME</Link>
                     </li>
                     <li>
-                        ABOUT
+                        <Link to='/about' className={links[1]}>ABOUT</Link>
                     </li>
                     <li>
-                        PORTFOLIO
+                        <Link to='/portfolio' className={links[2]}>PORTFOLIO</Link>
                     </li>
                     <li>
-                        CONTACT
+                        <Link to='/contact' className={links[3]}>CONTACT</Link>
                     </li>
                 </ul>
             </div>

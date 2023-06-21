@@ -3,7 +3,9 @@
     justify-content: center;
     align-items: center;
     background-color: var(--blackish);
-    height: 90px;
+    height: 120px;
+    width:100%;
+
 }
 
 .navbar ul{
@@ -19,15 +21,21 @@
 
 .navbar li{
     text-align: center;
-    font-size: larger;
+    font-size: 1.3em;
     font-weight: bold;
     transition: color 0.3s;
 }
 
-.navbar li:hover{
-    color: var(--crimson);
+.links{
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.links:hover{
+    color: var(--variable-color);
 }
 
 .active{
-    color: var(--crimson);
+    color: var(--variable-color);
 }

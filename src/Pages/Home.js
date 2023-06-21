@@ -11,17 +11,17 @@ function ImageSection() {
                 <div className="detailsContainer">
                     <h2>Hi there! I am</h2>
                     <h1>UMAR AKHTAR</h1>
-                    <p>I am passionate web developer. I am a fresh graduate and I am actively looking for a postion as front-end web developer.</p>
+                    <h2>I am a Full stack MERN developer</h2>
                 </div>
             </div>
         </div>
     );
 }
 
-export default function Home() {
+export default function Home(props) {
     return (
         <>
-            <NavBar />
+            <NavBar index={props.index}/>
             <ImageSection />
         </>
     );
