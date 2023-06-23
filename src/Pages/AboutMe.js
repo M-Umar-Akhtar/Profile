@@ -2,8 +2,10 @@ import NavBar from "../Components/NavBar";
 import React from 'react';
 import { useState, useEffect } from 'react'
 import '../assets/css/about.css'
+import { click } from "@testing-library/user-event/dist/click";
 
 function Information() {
+
     return (
         <div>
             <div className="infoContainer">
@@ -18,6 +20,7 @@ function Information() {
                         <li>Last Name: Akhtar</li>
                         <li>Date of birth: 9 january 2001</li>
                         <li>Nationality: Pakistani</li>
+                        <li>LinkedIn Profile: <a href="https://www.linkedin.com/in/muhammad-umar-akhtar-074780270/" className="customLinks" target="_blank" rel="noopener noreferrer"> Click me!</a></li>
                     </ul>
                 </div>
                 <div className="col2">
@@ -26,11 +29,12 @@ function Information() {
                         <li>City: Rawalpind/Islamabad</li>
                         <li>Email: umarakhtar.ms@gmail.com</li>
                         <li>Spoken Langages: Urdu - English</li>
+                        <li>Github Profile: <a href="https://github.com/M-Umar-Akhtar" className="customLinks" target="_blank" rel="noopener noreferrer"> Click me!</a></li>
                     </ul>
                 </div>
             </div>
             <div>
-                <button className="resumeButton">DOWNLOAD RESUME <i className="fas fa-file-pdf"></i></button>
+                <a href="https://drive.google.com/file/d/1XQa3wPeu9CxIfmZB25EFuEMoitm7u3Kc/view?usp=drive_link" target="_blank" rel="noopener noreferrer"><button className="resumeButton">VIEW RESUME <i className="fas fa-file-pdf"></i></button></a>
             </div>
         </div>
     );
@@ -59,16 +63,76 @@ const sampleData = {
             date: "2015 - 2017",
         },
     ],
+
     CERTIFICATES: [
         {
-            key: "3",
+            key: "4",
             title: "HASH CODE 2022 - GOOGLE",
             date: "2/2022 - 3/2022",
         },
         {
-            key: "4",
+            key: "5",
             title: "MERN STACK ADVANCED - PSEB IT INDUSTRY ACADEMIA BRIDGE PROGRAM",
             date: "7/2022 - 9/2022",
+        },
+    ],
+
+    SKILLS: [
+        {
+            title: "HTML",
+            stars: 5
+        },
+        {
+            title: "CSS",
+            stars: 5
+        },
+        {
+            title: "Javascript",
+            stars: 4
+        },
+        {
+            title: "React.js",
+            stars: 4
+        },
+        {
+            title: "Node.js",
+            stars: 3
+        },
+        {
+            title: "MongoDB",
+            stars: 4
+        },
+        {
+            title: "PHP",
+            stars: 3
+        },
+        {
+            title: "MySQL",
+            stars: 3
+        },
+        {
+            title: "C++",
+            stars: 5
+        },
+        {
+            title: "C#",
+            stars: 3
+        },
+        {
+            title: "Java",
+            stars: 5
+        },
+        {
+            title: "Git/GitHub",
+            stars: 3
+        },
+        {
+            title: "Jenkins/Tomcat",
+            stars: 3
+        },
+        {
+            title: "Unity3D",
+            stars: 4
         },
     ]
 }
@@ -118,7 +182,7 @@ function Achivements() {
         const { card, index, id, cardIndex } = props;
         const icons = ["fas fa-graduation-cap", "fas fa-certificate"];
         return (
-            <div id={id} className={cardIndex} onClick={() => { onClick(index, "activeButton", index)}}>
+            <div id={id} className={cardIndex} onClick={() => { onClick(index, "activeButton", index) }}>
                 <div className="titleContainer">
                     <h2 className="title"><i class={icons[index]}></i> {card}</h2>
                 </div>
@@ -145,14 +209,46 @@ function Achivements() {
     */
 
     function skills(cardIndex) {
+
+        let halfLength = sampleData["SKILLS"].length / 2;
+
+        function initSkillsList(arr) {
+            const list = arr.map((data) => {
+                let stars = [];
+                const filled = <i class="fas fa-star"></i>;
+                const notFilled = <i class="far fa-star"></i>
+                for (let i = 0; i < 5; i++) {
+                    stars.push(i < data.stars ? filled : notFilled);
+                }
+                return (
+                    <li>
+                        <h3>{data.title}</h3>
+                        {stars}
+                    </li>
+                );
+            });
+            return list;
+        }
+
         return (
-            <div id="skl" className={cardIndex} onClick={() => { onClick(2, "activeButton", 2)}}>
+            <div id="skl" className={cardIndex} onClick={() => { onClick(2, "activeButton", 2) }}>
                 <div className="titleContainer">
                     <h2 className="title"><i class="fas fa-star"></i> SKILLS</h2>
+                </div>
+                <div className="skillsContainer">
+                    <ul className="skillsList">
+                        {initSkillsList(sampleData["SKILLS"].slice(0, halfLength))}
+                    </ul>
+                    <ul className="skillsList">
+                        {initSkillsList(sampleData["SKILLS"].slice(halfLength))}
+                    </ul>
                 </div>
             </div>
         );
     }
+
+
+
 
     /*
     *
@@ -182,25 +278,31 @@ function Achivements() {
     }, [indexes, cards]);
 
     return (
-        <div className="achivements">
-            <div className="navigationContainer">
-                <div className="navigation">
-                    <button className={"navigationButton " + currentButton[0]} onClick={() => { onClick(0, "activeButton", 0) }}><i class="fas fa-graduation-cap"></i> EDUCATION</button>
-                    <button className={"navigationButton " + currentButton[1]} onClick={() => { onClick(1, "activeButton", 1) }}><i class="fas fa-certificate"></i> CERTIFICATES</button>
-                    <button className={"navigationButton " + currentButton[2]} onClick={() => { onClick(2, "activeButton", 2) }}><i class="fas fa-star"></i> SKILLS</button>
+        <>
+            <div style={{ marginBottom: "50px" }}>
+                <h2 style={{ marginTop: "0px" }}><i class="fas fa-trophy" style={{ fontSize: '20px', color: 'var(--variable-color)' }}></i> ACHIEVEMENTS</h2>
+                <p style={{ marginTop: "0px" }}>Hover & click the cards in the back to view them </p>
+            </div>
+            <div className="achivements">
+                <div className="navigationContainer">
+                    <div className="navigation">
+                        <button className={"navigationButton " + currentButton[0]} ><i class="fas fa-graduation-cap"></i> EDUCATION</button>
+                        <button className={"navigationButton " + currentButton[1]} ><i class="fas fa-certificate"></i> CERTIFICATES</button>
+                        <button className={"navigationButton " + currentButton[2]} ><i class="fas fa-star"></i> SKILLS</button>
+                    </div>
                 </div>
-            </div>
-            <div className="cardsContainer">
-                {componentArray.map((element, index) => {
-                    return (
-                        <React.Fragment key={index}>
-                            {element}
-                        </React.Fragment>
-                    );
-                })}
-            </div>
+                <div className="cardsContainer">
+                    {componentArray.map((element, index) => {
+                        return (
+                            <React.Fragment key={index}>
+                                {element}
+                            </React.Fragment>
+                        );
+                    })}
+                </div>
 
-        </div>
+            </div>
+        </>
     );
 
 }
