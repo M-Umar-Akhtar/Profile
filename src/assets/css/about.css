@@ -91,36 +91,64 @@
 * Education-Certificates Component style
 *
 */
-.card{
-    
-}
 
-.first{
-    z-index: 2;
-    transition: z-index 1s;
-}
-
-.second{
-    margin-left: -600px;
-    margin-top: -20px;
-    z-index: 1;
-    transition: z-index 1s;
-}
-
-.third{
-    margin-left: -600px;
-    margin-top: -40px;
-    z-index: 0;
-    transition: z-index 1s ;
-}
-
-#edu,#skl,#cer{
+.card {
+    /* Common styles for all components */
     border: 1px solid grey;
     background-color: var(--less-blackish);
     display: inline-block;
-    width: 100%;
+    width: 85%;
     height: 100%;
 }
+
+
+
+.titleContainer{
+    background-color: var(--blackish);
+    padding: 20px 0px;
+    border-bottom: 1px solid grey;
+}
+
+.first {
+    position: absolute;
+    left: 60px;
+    top: 0px;
+    z-index: 2;
+  }
+  
+  .second {
+    position: absolute;
+    left: 80px;
+    top: -10px;
+    z-index: 1;
+    transition: top 0.6s ease;
+  }
+  
+  .third {
+    position: absolute;
+    left: 100px;
+    top: -20px;
+    z-index: 0;
+    transition: top 0.6s ease;
+  }
+
+  .second:hover{
+    top: -60px
+}
+
+.third:hover{
+    top: -60px
+}
+
+
+
+/*#edu,#skl,#cer{
+    border: 1px solid grey;
+    background-color: var(--less-blackish);
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+}*/
 
 
 
@@ -176,17 +204,14 @@
 }
 
 .cardsContainer{
+    position: relative;
     display: flex;
     justify-content: center;
     width: 100%;
     padding: 0px 40px;
 }
 
-.titleContainer{
-    background-color: var(--blackish);
-    padding: 20px 0px;
-    border-bottom: 1px solid grey;
-}
+
 
 .title{
     margin: 0px;

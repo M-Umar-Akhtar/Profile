@@ -1,6 +1,6 @@
 import NavBar from "../Components/NavBar";
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import '../assets/css/about.css'
 
 function Information() {
@@ -72,12 +72,6 @@ const sampleData = {
         },
     ]
 }
-function Cards() {
-
-    return (
-        <></>
-    );
-}
 
 function Achivements() {
     // state to handle component render i:e education,certificate or skills
@@ -87,18 +81,44 @@ function Achivements() {
     const [indexes, setIndex] = useState([0, 1, 2]);
     const [currentCard, setCurrentCard] = useState(0);
     const [currentButton, setCurrentButton] = useState(styleButton);
-    const [componentArray, setComponentArray] = useState(createArray());
+    const [componentArray, setComponentArray] = useState([]);
+
+    function onClick(index, value, id) {
+        setCurrentButton((prevArray) => {
+            const newArray = [...prevArray];
+            for (let i = 0; i < 3; i++) {
+                if (index === i)
+                    newArray[i] = value;
+                else
+                    newArray[i] = "";
+            }
+
+            return newArray;
+        });
+        setIndex(prevArray => {
+            const newArray = [...prevArray];
+            const currentIndex = newArray.indexOf(currentCard);
+            const newIndex = newArray.indexOf(id);
+            const temp = newArray[newIndex]
+            newArray[newIndex] = newArray[currentIndex];
+            newArray[currentIndex] = temp;
+            return newArray
+        });
+        setCurrentCard(id);
+        setComponentArray(createArray());
+    }
 
     /*
-*
-*   Education and certificates component    
-* 
-*/
+    *
+    *   Education and certificates component    
+    * 
+    */
+
     function education_certificates(props) {
         const { card, index, id, cardIndex } = props;
         const icons = ["fas fa-graduation-cap", "fas fa-certificate"];
         return (
-            <div id={id} className={cardIndex}>
+            <div id={id} className={cardIndex} onClick={() => { onClick(index, "activeButton", index)}}>
                 <div className="titleContainer">
                     <h2 className="title"><i class={icons[index]}></i> {card}</h2>
                 </div>
@@ -117,14 +137,16 @@ function Achivements() {
             </div>
         );
     }
+
     /*
     *
     *   Skills component   
     * 
     */
+
     function skills(cardIndex) {
         return (
-            <div id="skl" className={cardIndex}>
+            <div id="skl" className={cardIndex} onClick={() => { onClick(2, "activeButton", 2)}}>
                 <div className="titleContainer">
                     <h2 className="title"><i class="fas fa-star"></i> SKILLS</h2>
                 </div>
@@ -137,37 +159,6 @@ function Achivements() {
     *   Main wrapper component  
     * 
     */
-
-    function onClick(index, value, id) {
-        console.log("ID == " + id)
-        setCurrentButton((prevArray) => {
-            const newArray = [...prevArray];
-            for (let i = 0; i < 3; i++) {
-                if (index === i)
-                    newArray[i] = value;
-                else
-                    newArray[i] = "";
-            }
-
-            return newArray;
-        });
-        setTimeout(() => {
-            setIndex(prevArray => {
-                const newArray = [...prevArray];
-                const currentIndex = newArray.indexOf(currentCard);
-                const newIndex = newArray.indexOf(id);
-                const temp = newArray[newIndex]
-                newArray[newIndex] = newArray[currentIndex];
-                newArray[currentIndex] = temp;
-                return newArray
-            });
-            setCurrentCard(id);
-        }, 300);
-    }
-    var components = [];
-    components.push(education_certificates({ card: "EDUCATION", index: 0, id: "edu", cardIndex: cards[0] }));
-    components.push(education_certificates({ card: "CERTIFICATES", index: 1, id: "cer", cardIndex: cards[1] }));
-    components.push(skills(cards[2]));
 
     const createArray = () => {
         let comps = [];
@@ -186,6 +177,10 @@ function Achivements() {
         return comps;
     }
 
+    useEffect(() => {
+        setComponentArray(createArray());
+    }, [indexes, cards]);
+
     return (
         <div className="achivements">
             <div className="navigationContainer">
@@ -196,7 +191,7 @@ function Achivements() {
                 </div>
             </div>
             <div className="cardsContainer">
-                {createArray().map((element, index) => {
+                {componentArray.map((element, index) => {
                     return (
                         <React.Fragment key={index}>
                             {element}
