@@ -1,0 +1,107 @@
+.info-form{
+    display: flex;
+}
+
+.infoSide{
+    background-color: var(--blackish);
+    width: 32%;
+    border: 1px solid grey;
+}
+
+.infoSide ul{
+    list-style-type: none;
+    margin-top: 0px;
+    padding-left: 30px;
+}
+
+.infoSide h2{
+    color: var(--variable-color);
+    margin-bottom: 5px;
+}
+
+.infoSide p{
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.icons {
+    color: grey;
+    margin-right: 5px;
+}
+
+.infoSide a{
+    display: flex;
+    text-decoration: none;
+    color: white;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center; 
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    margin-right: 20px; 
+    border-radius: 50%;
+}
+
+.formSide{
+    padding-left: 40px;
+}
+
+.formSide form{
+    display: flex;
+    flex-direction: column;
+}
+
+.formSide form label i{
+    font-size: 20px;
+    margin-right: 20px;
+    transition: color 0.4s ease;
+}
+
+.formSide label{
+    margin-bottom: 16px;
+    margin-top: 20px
+}
+
+.formSide input{
+    background-color: var(--less-blackish);
+    border: none;
+    border-bottom: 1px solid grey;
+    width: 85%;
+    height: 40px;
+    color: white;
+    font-size:medium;
+}
+
+.formSide input::placeholder{
+    color: white;
+}
+
+.formSide input:focus,input:hover {
+    outline: none; /* Remove outline */
+    box-shadow: none; /* Remove box-shadow */
+}
+
+.formSide label:hover i,
+.formSide label:focus-within i {
+    color: var(--variable-color);
+}
+
+.emailButton{
+    width: 60%;
+    height: 50px;
+    margin-top: 25px;
+    font-size:1em;
+    color: white;
+    background-color: var(--variable-color);
+    border: none;
+    outline: none;
+    transition: color 0.3s, border 0.3s, background-color 0.3s;
+}
+
+.emailButton:hover{
+    color: var(--variable-color);
+    border: 2px dotted var(--variable-color);
+    background-color: var(--less-blackish);
+
+}

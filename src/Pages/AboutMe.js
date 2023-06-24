@@ -34,7 +34,7 @@ function Information() {
                 </div>
             </div>
             <div>
-                <a href="https://drive.google.com/file/d/1XQa3wPeu9CxIfmZB25EFuEMoitm7u3Kc/view?usp=drive_link" target="_blank" rel="noopener noreferrer"><button className="resumeButton">VIEW RESUME <i className="fas fa-file-pdf"></i></button></a>
+                <a href="https://drive.google.com/file/d/1XQa3wPeu9CxIfmZB25EFuEMoitm7u3Kc/view?usp=sharing" target="_blank" rel="noopener noreferrer"><button className="resumeButton">VIEW RESUME <i className="fas fa-file-pdf"></i></button></a>
             </div>
         </div>
     );
