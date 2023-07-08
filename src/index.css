@@ -1,8 +1,9 @@
 :root{
   --blackish: #141414;
-  --less-blackish: #252525;
-  --lowest-blackish: #313131;
-  --variable-color: crimson;
+  --less-blackish: rgb(37, 37, 37);
+  --lowest-blackish: rgb(49, 49, 49);
+  --variable-color: rgb(220, 20, 60);
+  --variable-color-opacity: rgba(0, 0, 0, 0.6);
 }
 
 body {

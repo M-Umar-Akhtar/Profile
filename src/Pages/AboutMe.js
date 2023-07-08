@@ -270,6 +270,7 @@ function Achivements() {
                     comps.push(skills(cards[i] + " card"));
             }
         }
+
         return comps;
     }
 
@@ -281,7 +282,7 @@ function Achivements() {
         <>
             <div style={{ marginBottom: "50px" }}>
                 <h2 style={{ marginTop: "0px" }}><i class="fas fa-trophy" style={{ fontSize: '20px', color: 'var(--variable-color)' }}></i> ACHIEVEMENTS</h2>
-                <p style={{ marginTop: "0px" }}>Hover & click the cards in the back to view them </p>
+                <p style={{ marginTop: "0px" }}>Hover & click on the cards in the back to view them </p>
             </div>
             <div className="achivements">
                 <div className="navigationContainer">
