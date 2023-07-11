@@ -1,72 +1,79 @@
-.projects {
-    display: grid;
-    z-index: 2;
-    grid-template-columns: auto auto auto;
-    transition: width 0.5s ease,height 0.5s ease;
+.filters{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width:100%;
+    margin-bottom: 20px;
 }
 
-.projectImage img {
-    margin: 0px;
-    border-radius: 18px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.projectImage {
-    height: 100%;
-    width: 90%;
-    margin: auto;
-    position: relative;
-    display: inline-block;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px dotted var(--variable-color);
-    background-color: var(--variable-color-opacity);
-    border-radius: 18px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-}
-
-.projectImage:hover .overlay {
-    opacity: 1;
-    pointer-events: auto;
-    /* Enable hover events on the overlay */
-}
-
-.overlay-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.filters ul{
     color: white;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    height: 100%;
+    padding:0px;
+}
+
+.filters li{
     text-align: center;
-    padding: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-.smallPreviewButton{
-    width: 60px;
-    height: 50px;
-    font-size: 1em;
-    background-color: var(--variable-color);
-    color: white;
-    border-radius: 18px;
-    outline: none;
-    border: none;
-    transition: color 0.3s, border 0.3s, background-color 0.3s;
+
+/*
+*
+*   PROJECT COMPONENT
+*
+*/
+
+.projectContainer.open {
+    height: 100%;
+    width: 100%;
+    opacity: 1;
 }
 
-.smallPreviewButton:hover {
+.projectContainer {
+    background-color: var(--lowest-blackish);
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+    transition: width 0.7s ease, height 0.7s ease, opacity 0.5s ease;
+}
+
+.cross-button {
+    position: absolute;
+    left: 97%;
     color: var(--variable-color);
-    border: 2px dotted var(--variable-color);
-    background-color: var(--variable-color-opacity);
+    font-size: 2em;
+    background-color: var(--less-blackish);
+    border: none;
+    outline: none;
+}
+
+.project {
+    display: flex;
+}
+
+
+.project img {
+    margin: 20px 20px;
+    width: 450px;
+    height: 300px;
+}
+
+.projectInfo {
+    width: 100%;
+    padding-right: 10px;
+}
+
+.projectInfo h2 {
+    margin-bottom: 15px;
 }
 
 .previewButton {
@@ -86,38 +93,96 @@
     background-color: var(--less-blackish);
 }
 
-.project {
-    display: flex;
+/*
+*
+*   PROJECTS COMPONENT
+*
+*/
+
+.projects {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    row-gap: 40px;
+    transition: width 0.5s ease, height 0.5s ease;
 }
 
-.projectContainer{
-    background-color: var(--lowest-blackish);
-    width: 0px;
-    height: 0px;
-    opacity: 0;
-    transition: width 0.7s ease,height 0.7s ease,opacity 0.5s ease;
-}
-
-.cross-button{
-    position: absolute;
-    left: 97%;
-    color: var(--variable-color);
-    font-size: 2em;
-    background-color: var(--less-blackish); 
+.grid-hr {
     border: none;
-    outline: none;
-}
-
-.project img{
-    margin: 20px 20px;
-    width: 450px;
-    height: 300px;
-}
-
-.projectInfo {
+    margin: 0;
+    height: 1px;
+    border-top: 1px solid gray;
+    grid-column: 1/ span 3;
     width: 100%;
 }
 
-.projectInfo h2 {
-    margin-bottom: 15px;
+.projects.closed {
+    height: 0;
+    width: 0;
+    opacity: 0;
+}
+
+.projectImage img {
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.projectImage {
+    height: 100%;
+    width: 90%;
+
+    margin: auto;
+    position: relative;
+    display: inline-block;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--variable-color-opacity);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.projectImage:hover .overlay {
+    opacity: 1;
+    pointer-events: auto;
+    /* Enable hover events on the overlay */
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    
+}
+
+.overlay-content strong {
+    color: var(--variable-color);
+}
+
+.smallPreviewButton {
+    width: 60px;
+    height: 50px;
+    font-size: 1em;
+    background-color: var(--variable-color);
+    color: white;
+    border-radius: 18px;
+    outline: none;
+    border: none;
+    transition: color 0.3s, border 0.3s, background-color 0.3s;
+}
+
+.smallPreviewButton:hover {
+    color: var(--variable-color);
+    border: 2px dotted var(--variable-color);
+    background-color: var(--variable-color-opacity);
 }
