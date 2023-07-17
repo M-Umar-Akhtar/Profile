@@ -11,7 +11,7 @@ function ImageSection() {
                 <div className="detailsContainer">
                     <h2>Hi there! I am</h2>
                     <h1>UMAR AKHTAR</h1>
-                    <h2>I am a Full stack MERN developer</h2>
+                    <h2>I am a Full stack web developer</h2>
                 </div>
             </div>
         </div>
