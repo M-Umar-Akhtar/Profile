@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import { stagger, usePresence, useAnimate } from 'framer-motion';
+import { usePresence, useAnimate } from 'framer-motion';
+import { Link } from 'react-router-dom'
 import React from 'react';
-import NavBar from "../Components/NavBar"
+import { motion } from 'framer-motion'
 import '../assets/css/portfolio.css'
 import pro1 from "../assets/images/pro1.PNG"
 import pro2 from "../assets/images/pro2.PNG"
@@ -240,8 +241,8 @@ export default function Portfolio(props) {
 
     return (
         <>
-            <NavBar index={props.index} />
-            <div className="aboutMe">
+            <motion.div className="aboutMe" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.7}}>
+            <Link to="/" className="cross-button" ><i class="fas fa-times closeIcon"></i></Link>
                 <div className="headingContainer">
                     <h1>PORT<span style={{ color: "var(--variable-color)" }}>FOLIO</span></h1>
                     <div className="breakerContainer" style={{ marginBottom: "10px" }}>
@@ -268,7 +269,7 @@ export default function Portfolio(props) {
                 </div>
                 <Projects />
                 <Project />
-            </div>
+            </motion.div>
         </>
     );
 }

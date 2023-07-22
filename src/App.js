@@ -1,20 +1,17 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from './Pages/Home'
-import AboutMe from './Pages/AboutMe'
-import Portfolio from "./Pages/Portfolio";
-import Contact from "./Pages/Contact";
+import { BrowserRouter as Router} from "react-router-dom";
+import AnimatedRoutes from "./Components/AnimatedRoutes";
+
 
 function App() {
+  /*<AboutMe index={1}/>
+      <Portfolio index={2}/>
+      <Contact index={3}/>*/
   return (
     <>
       <Router>
-        <Routes>
-          <Route exact path='/' element={<Home index={0}/>} />
-          <Route exact path='/about' element={<AboutMe index={1}/>} />
-          <Route exact path='/portfolio' element={<Portfolio index={2}/>} />
-          <Route exact path='/contact' element={<Contact index={3}/>} />
-        </Routes>
+        <AnimatedRoutes/>
       </Router>
+
     </>
   );
 }

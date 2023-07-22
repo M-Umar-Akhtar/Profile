@@ -1,8 +1,8 @@
-import NavBar from "../Components/NavBar";
 import React from 'react';
-import { useState, useEffect } from 'react'
+import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import '../assets/css/about.css'
-import { click } from "@testing-library/user-event/dist/click";
+import { motion } from 'framer-motion'
 
 function Information() {
 
@@ -140,36 +140,64 @@ const sampleData = {
 function Achivements() {
     // state to handle component render i:e education,certificate or skills
     const styleButton = ["activeButton", "", ""];
-    const cardArray = ["first", "second", "third"];
-    const [cards, setCards] = useState(cardArray);
-    const [indexes, setIndex] = useState([0, 1, 2]);
-    const [currentCard, setCurrentCard] = useState(0);
-    const [currentButton, setCurrentButton] = useState(styleButton);
-    const [componentArray, setComponentArray] = useState([]);
 
-    function onClick(index, value, id) {
-        setCurrentButton((prevArray) => {
-            const newArray = [...prevArray];
-            for (let i = 0; i < 3; i++) {
-                if (index === i)
-                    newArray[i] = value;
-                else
-                    newArray[i] = "";
-            }
+    /* useRef for the cards */
 
-            return newArray;
-        });
-        setIndex(prevArray => {
-            const newArray = [...prevArray];
-            const currentIndex = newArray.indexOf(currentCard);
-            const newIndex = newArray.indexOf(id);
-            const temp = newArray[newIndex]
-            newArray[newIndex] = newArray[currentIndex];
-            newArray[currentIndex] = temp;
-            return newArray
-        });
-        setCurrentCard(id);
-        setComponentArray(createArray());
+    const firstCard = useRef(null);
+    const secondCard = useRef(null);
+    const thirdCard = useRef(null);
+    const cardsReference = [firstCard, secondCard, thirdCard];
+    const currentCard = useRef(0);
+
+    /* useRef for the buttons */
+
+    const firstButton = useRef(null);
+    const secondButton = useRef(null);
+    const thirdButton = useRef(null);
+    const buttonsReference = [firstButton, secondButton, thirdButton];
+    const currentButton = useRef(0);
+
+    function swapCards(index) {
+        const current = cardsReference[index];
+        const onFront = cardsReference[currentCard.current];
+        const currentStyles = window.getComputedStyle(current.current);
+        const onFrontStyles = window.getComputedStyle(onFront.current);
+        let zIndex = currentStyles.zIndex;
+        let top = currentStyles.top;
+        let left = currentStyles.left;
+        let opacity = currentStyles.opacity;
+        current.current.style.opacity = onFrontStyles.opacity;
+        current.current.style.zIndex = onFrontStyles.zIndex;
+        current.current.style.top = onFrontStyles.top;
+        current.current.style.left = onFrontStyles.left;
+        onFront.current.style.opacity = opacity;
+        onFront.current.style.zIndex = zIndex;
+        onFront.current.style.top = top;
+        onFront.current.style.left = left;
+        /*setTimeout(()=>{
+            current.current.style.opacity = "1";
+            onFront.current.style.opacity = "1";
+        },900);*/
+        currentCard.current = index;
+    }
+
+    function swapButtons(index) {
+        const current = buttonsReference[currentButton.current];
+        const clicked = buttonsReference[index];
+        current.current.style.backgroundColor = "var(--less-blackish)";
+        current.current.style.borderColor = "grey";
+        current.current.style.color = "grey";
+        clicked.current.style.backgroundColor = "var(--variable-color)";
+        clicked.current.style.borderColor = "var(--variable-color)";
+        clicked.current.style.color = "white";
+        currentButton.current = index;
+    }
+
+    function onClick(index) {
+        if (index === currentButton.current)
+            return;
+        swapCards(index);
+        swapButtons(index);
     }
 
     /*
@@ -178,11 +206,11 @@ function Achivements() {
     * 
     */
 
-    function education_certificates(props) {
+    function Education_certificates(props) {
         const { card, index, id, cardIndex } = props;
         const icons = ["fas fa-graduation-cap", "fas fa-certificate"];
         return (
-            <div id={id} className={cardIndex} onClick={() => { onClick(index, "activeButton", index) }}>
+            <div id={id} className={cardIndex} ref={cardsReference[index]}>
                 <div className="titleContainer">
                     <h2 className="title"><i class={icons[index]}></i> {card}</h2>
                 </div>
@@ -208,7 +236,7 @@ function Achivements() {
     * 
     */
 
-    function skills(cardIndex) {
+    function Skills({ cardIndex }) {
 
         let halfLength = sampleData["SKILLS"].length / 2;
 
@@ -231,7 +259,7 @@ function Achivements() {
         }
 
         return (
-            <div id="skl" className={cardIndex} onClick={() => { onClick(2, "activeButton", 2) }}>
+            <div id="skl" className={cardIndex} ref={cardsReference[2]}>
                 <div className="titleContainer">
                     <h2 className="title"><i class="fas fa-star"></i> SKILLS</h2>
                 </div>
@@ -256,50 +284,24 @@ function Achivements() {
     * 
     */
 
-    const createArray = () => {
-        let comps = [];
-        for (let i = 0; i < 3; i++) {
-            switch (indexes[i]) {
-                case 0:
-                    comps.push(education_certificates({ card: "EDUCATION", index: 0, id: "edu", cardIndex: cards[i] + " card" }));
-                    break;
-                case 1:
-                    comps.push(education_certificates({ card: "CERTIFICATES", index: 1, id: "cer", cardIndex: cards[i] + " card" }));
-                    break;
-                case 2:
-                    comps.push(skills(cards[i] + " card"));
-            }
-        }
-
-        return comps;
-    }
-
-    useEffect(() => {
-        setComponentArray(createArray());
-    }, [indexes, cards]);
-
     return (
         <>
             <div style={{ marginBottom: "50px" }}>
                 <h2 style={{ marginTop: "0px" }}><i class="fas fa-trophy" style={{ fontSize: '20px', color: 'var(--variable-color)' }}></i> ACHIEVEMENTS</h2>
-                <p style={{ marginTop: "0px" }}>Hover & click on the cards in the back to view them </p>
+                <p style={{ marginTop: "0px" }}>Click on the buttons below to view the cards </p>
             </div>
             <div className="achivements">
                 <div className="navigationContainer">
                     <div className="navigation">
-                        <button className={"navigationButton " + currentButton[0]} ><i class="fas fa-graduation-cap"></i> EDUCATION</button>
-                        <button className={"navigationButton " + currentButton[1]} ><i class="fas fa-certificate"></i> CERTIFICATES</button>
-                        <button className={"navigationButton " + currentButton[2]} ><i class="fas fa-star"></i> SKILLS</button>
+                        <button ref={buttonsReference[0]} className={"navigationButton"} style={{ color: "white", backgroundColor: " var(--variable-color)", borderColor: "var(--variable-color)" }} onClick={() => onClick(0)}><i class="fas fa-graduation-cap"></i> EDUCATION</button>
+                        <button ref={buttonsReference[1]} className={"navigationButton"} onClick={() => onClick(1)}><i class="fas fa-certificate"></i> CERTIFICATES</button>
+                        <button ref={buttonsReference[2]} className={"navigationButton"} onClick={() => onClick(2)}><i class="fas fa-star"></i> SKILLS</button>
                     </div>
                 </div>
                 <div className="cardsContainer">
-                    {componentArray.map((element, index) => {
-                        return (
-                            <React.Fragment key={index}>
-                                {element}
-                            </React.Fragment>
-                        );
-                    })}
+                    <Education_certificates card={"EDUCATION"} index={0} id={"edu"} cardIndex={"first card"} />
+                    <Education_certificates card={"CERTIFICATES"} index={1} id={"cer"} cardIndex={"second card"} />
+                    <Skills cardIndex={"third card"} />
                 </div>
 
             </div>
@@ -311,8 +313,9 @@ function Achivements() {
 export default function AboutMe(props) {
     return (
         <>
-            <NavBar index={props.index} />
-            <div className="aboutMe">
+
+            <motion.div className="aboutMe" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}  transition={{duration: 0.7}}>
+                <Link to="/" className="cross-button" ><i class="fas fa-times closeIcon"></i></Link>
                 <div className="headingContainer">
                     <h1>ABOUT <span style={{ color: "var(--variable-color)" }}>ME</span></h1>
                     <div className="breakerContainer">
@@ -324,7 +327,7 @@ export default function AboutMe(props) {
                 <Information />
                 <hr className="hr" style={{ width: "100%", margin: "70px 0px" }}></hr>
                 <Achivements />
-            </div>
+            </motion.div>
         </>
     );
 }
