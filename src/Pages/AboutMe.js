@@ -3,38 +3,41 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import '../assets/css/about.css'
 import { motion } from 'framer-motion'
+import me from '../assets/images/OIP.jpeg'
 
 function Information() {
 
     return (
-        <div>
-            <div className="infoContainer">
-                <h2><i class="fas fa-user" style={{ fontSize: '20px', color: 'var(--variable-color)' }}></i> PERSONAL INFORMATION</h2>
-                <p>I am a passionate web developer. I have experience with Frontend and Backend of a website.
-                    I am team player and understand the dynamics and working of a functional team. </p>
-            </div>
-            <div className="detailedInfoContainer">
-                <div className="col1">
-                    <ul>
-                        <li>First Name: Umar</li>
-                        <li>Last Name: Akhtar</li>
-                        <li>Date of birth: 9 january 2001</li>
-                        <li>Nationality: Pakistani</li>
-                        <li>LinkedIn Profile: <a href="https://www.linkedin.com/in/muhammad-umar-akhtar-074780270/" className="customLinks" target="_blank" rel="noopener noreferrer"> Click me!</a></li>
-                    </ul>
-                </div>
-                <div className="col2">
-                    <ul>
-                        <li>Contact: +923365447778</li>
-                        <li>City: Rawalpind/Islamabad</li>
-                        <li>Email: umarakhtar.ms@gmail.com</li>
-                        <li>Spoken Langages: Urdu - English</li>
-                        <li>Github Profile: <a href="https://github.com/M-Umar-Akhtar" className="customLinks" target="_blank" rel="noopener noreferrer"> Click me!</a></li>
-                    </ul>
-                </div>
-            </div>
+        <div className='info-grid'>
             <div>
-                <a href="https://drive.google.com/file/d/1hebZV9HdzSpRPgwqyhlniMBWP558yyqK/view?usp=sharing" target="_blank" rel="noopener noreferrer"><button className="resumeButton">VIEW RESUME <i className="fas fa-file-pdf"></i></button></a>
+                <div className="infoContainer">
+                    <h2><i class="fas fa-user" style={{ fontSize: '20px', color: 'var(--variable-color)' }}></i> PERSONAL INFORMATION</h2>
+                    <p>I am a passionate web developer. I have experience with Frontend and Backend of a website.
+                        I am team player and understand the dynamics and working of a functional team. </p>
+                </div>
+                <div className="detailedInfoContainer">
+                    <div className="col1">
+                        <ul>
+                            <li>First Name: Umar</li>
+                            <li>Last Name: Akhtar</li>
+                            <li>Date of birth: 9 january 2001</li>
+                            <li>Nationality: Pakistani</li>
+                            <li>LinkedIn Profile: <a href="https://www.linkedin.com/in/muhammad-umar-akhtar-074780270/" className="customLinks" target="_blank" rel="noopener noreferrer"> Click me!</a></li>
+                        </ul>
+                    </div>
+                    <div className="col2">
+                        <ul>
+                            <li>Contact: +923365447778</li>
+                            <li>City: Rawalpind/Islamabad</li>
+                            <li>Email: umarakhtar.ms@gmail.com</li>
+                            <li>Spoken Langages: Urdu - English</li>
+                            <li>Github Profile: <a href="https://github.com/M-Umar-Akhtar" className="customLinks" target="_blank" rel="noopener noreferrer"> Click me!</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <a href="https://drive.google.com/file/d/1hebZV9HdzSpRPgwqyhlniMBWP558yyqK/view?usp=sharing" target="_blank" rel="noopener noreferrer"><button className="resumeButton">VIEW RESUME <i className="fas fa-file-pdf"></i></button></a>
+                </div>
             </div>
         </div>
     );
@@ -286,16 +289,18 @@ function Achivements() {
 
     return (
         <>
-            <div style={{ marginBottom: "50px" }}>
-                <h2 style={{ marginTop: "0px" }}><i class="fas fa-trophy" style={{ fontSize: '20px', color: 'var(--variable-color)' }}></i> ACHIEVEMENTS</h2>
-                <p style={{ marginTop: "0px" }}>Click on the buttons below to view the cards </p>
-            </div>
             <div className="achivements">
-                <div className="navigationContainer">
-                    <div className="navigation">
-                        <button ref={buttonsReference[0]} className={"navigationButton"} style={{ color: "white", backgroundColor: " var(--variable-color)", borderColor: "var(--variable-color)" }} onClick={() => onClick(0)}><i class="fas fa-graduation-cap"></i> EDUCATION</button>
-                        <button ref={buttonsReference[1]} className={"navigationButton"} onClick={() => onClick(1)}><i class="fas fa-certificate"></i> CERTIFICATES</button>
-                        <button ref={buttonsReference[2]} className={"navigationButton"} onClick={() => onClick(2)}><i class="fas fa-star"></i> SKILLS</button>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <div style={{ marginBottom: "50px" }}>
+                        <h2 style={{ marginTop: "0px" }}><i class="fas fa-trophy" style={{ fontSize: '20px', color: 'var(--variable-color)' }}></i> ACHIEVEMENTS</h2>
+                        <p style={{ marginTop: "0px" }}>Click on the buttons below to view the cards </p>
+                    </div>
+                    <div className="navigationContainer">
+                        <div className="navigation">
+                            <button ref={buttonsReference[0]} className={"navigationButton"} style={{ color: "white", backgroundColor: " var(--variable-color)", borderColor: "var(--variable-color)" }} onClick={() => onClick(0)}><i class="fas fa-graduation-cap"></i> EDUCATION</button>
+                            <button ref={buttonsReference[1]} className={"navigationButton"} onClick={() => onClick(1)}><i class="fas fa-certificate"></i> CERTIFICATES</button>
+                            <button ref={buttonsReference[2]} className={"navigationButton"} onClick={() => onClick(2)}><i class="fas fa-star"></i> SKILLS</button>
+                        </div>
                     </div>
                 </div>
                 <div className="cardsContainer">
@@ -313,8 +318,7 @@ function Achivements() {
 export default function AboutMe(props) {
     return (
         <>
-
-            <motion.div className="aboutMe" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}  transition={{duration: 0.7}}>
+            <motion.div className="aboutMe" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7 }}>
                 <Link to="/" className="cross-button" ><i class="fas fa-times closeIcon"></i></Link>
                 <div className="headingContainer">
                     <h1>ABOUT <span style={{ color: "var(--variable-color)" }}>ME</span></h1>
@@ -324,9 +328,15 @@ export default function AboutMe(props) {
                         <hr className="hr"></hr>
                     </div>
                 </div>
-                <Information />
-                <hr className="hr" style={{ width: "100%", margin: "70px 0px" }}></hr>
-                <Achivements />
+                <div className='scrollable'>
+                    <div className='scroll-snap-child'>
+                        <Information />
+                    </div>
+                    <div className='scroll-snap-child'>
+                        <Achivements />
+                    </div>
+                </div>
+
             </motion.div>
         </>
     );

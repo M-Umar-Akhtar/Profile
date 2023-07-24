@@ -124,7 +124,7 @@ export default function Portfolio(props) {
     const [isPresent, safeToRemove] = usePresence();
     const [scope, animate] = useAnimate();
     const [filtered, setFiltered] = useState(data);
-    const [currentFilter, setFilter] = useState("All");
+    const currentFilter = useRef("All");
     const [currentFilterIndex, setFilterIndex] = useState(0);
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
     const [currentItem, setItem] = useState({});
@@ -132,16 +132,16 @@ export default function Portfolio(props) {
 
 
     useEffect(() => {
-        if (currentFilter === "All") {
+        if (currentFilter.current === "All") {
             setFiltered(data);
             return;
         }
-        const filteredArray = data.filter((project) => { return project.type === currentFilter });
+        const filteredArray = data.filter((project) => { return project.type === currentFilter.current });
         setFiltered(filteredArray);
-    }, [currentFilter]);
+    }, [currentFilter.current]);
 
     function applyFilter(type, index) {
-        setFilter(type);
+        currentFilter.current = type;
         setFilterIndex(index);
     }
 
@@ -184,7 +184,7 @@ export default function Portfolio(props) {
         }
         return (
             <div className={`projectContainer ${isDetailsOpen ? 'open' : ''}`} ref={projectContainerRef} style={{ position: "relative" }}>
-                <button className="cross-button" onClick={() => closeDetails()}><i class="fas fa-times closeIcon"></i></button>
+                <button className="cross-button" style={{ backgroundColor: "var(--less-blackish)" }} onClick={() => closeDetails()}><i class="fas fa-times closeIcon"></i></button>
                 <div className="project">
                     <img src={currentItem.image} />
                     <div className="projectInfo">
@@ -240,36 +240,37 @@ export default function Portfolio(props) {
     }
 
     return (
-        <>
-            <motion.div className="aboutMe" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.7}}>
+        <motion.div className="aboutMe" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7 }}>
             <Link to="/" className="cross-button" ><i class="fas fa-times closeIcon"></i></Link>
-                <div className="headingContainer">
-                    <h1>PORT<span style={{ color: "var(--variable-color)" }}>FOLIO</span></h1>
-                    <div className="breakerContainer" style={{ marginBottom: "10px" }}>
-                        <hr className="hr"></hr>
-                        <i class="fas fa-briefcase" style={{ fontSize: '25px', color: 'var(--variable-color)' }}></i>
-                        <hr className="hr"></hr>
-                    </div>
+            <div className="headingContainer">
+                <h1>PORT<span style={{ color: "var(--variable-color)" }}>FOLIO</span></h1>
+                <div className="breakerContainer" style={{ marginBottom: "10px" }}>
+                    <hr className="hr"></hr>
+                    <i class="fas fa-briefcase" style={{ fontSize: '25px', color: 'var(--variable-color)' }}></i>
+                    <hr className="hr"></hr>
                 </div>
-                <div className="filters">
-                    <ul>
-                        <li >
-                            <a href="#" className={`links ${currentFilterIndex === 0 ? 'active' : ''}`} onClick={() => { applyFilter("All", 0) }}>All</a>
-                        </li>
-                        <li>
-                            <a href="#" className={`links ${currentFilterIndex === 1 ? 'active' : ''}`} onClick={() => { applyFilter("Web Application", 1) }}>Web</a>
-                        </li>
-                        <li>
-                            <a href="#" className={`links ${currentFilterIndex === 2 ? 'active' : ''}`} onClick={() => { applyFilter("Android Application", 2) }}>Android</a>
-                        </li>
-                        <li>
-                            <a href="#" className={`links ${currentFilterIndex === 3 ? 'active' : ''}`} onClick={() => { applyFilter("Game", 3) }}>Game</a>
-                        </li>
-                    </ul>
-                </div>
+            </div>
+            <div className="filters">
+                <ul>
+                    <li >
+                        <a href="#" className={`links ${currentFilterIndex === 0 ? 'active' : ''}`} onClick={() => { applyFilter("All", 0) }}>All</a>
+                    </li>
+                    <li>
+                        <a href="#" className={`links ${currentFilterIndex === 1 ? 'active' : ''}`} onClick={() => { applyFilter("Web Application", 1) }}>Web</a>
+                    </li>
+                    <li>
+                        <a href="#" className={`links ${currentFilterIndex === 2 ? 'active' : ''}`} onClick={() => { applyFilter("Android Application", 2) }}>Android</a>
+                    </li>
+                    <li>
+                        <a href="#" className={`links ${currentFilterIndex === 3 ? 'active' : ''}`} onClick={() => { applyFilter("Game", 3) }}>Game</a>
+                    </li>
+                </ul>
+            </div>
+            <div className='scrollable'  style={{height: "61.5vh"}}>
                 <Projects />
                 <Project />
-            </motion.div>
-        </>
+            </div>
+        </motion.div>
+
     );
 }

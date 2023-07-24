@@ -1,6 +1,6 @@
 :root{
-  --blackish: #000000;
-  --less-blackish: rgb(37, 37, 37);
+  --blackish: rgba(0, 0, 0,0.7);
+  --less-blackish: rgba(37, 37, 37,0.7);
   --lowest-blackish: rgb(49, 49, 49);
   --variable-color: rgb(250, 91, 15);
   --variable-color-opacity: rgba(19, 8, 8, 0.774);
@@ -8,6 +8,10 @@
 
 body {
   background-color: var(--blackish);
+  background-image: url('../src/assets/images/R.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+  /*background-image: linear-gradient(to bottom right, rgb(2 86 138) , rgb(252 15 61));*/
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

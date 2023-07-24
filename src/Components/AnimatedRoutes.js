@@ -8,7 +8,6 @@ import { AnimatePresence } from 'framer-motion'
 export default function AnimatedRoutes() {
     const location = useLocation();
     return (
-        <div>
             <AnimatePresence>
                 <Routes>
                     <Route exact path='/' element={<Home index={0} />} />
@@ -17,6 +16,5 @@ export default function AnimatedRoutes() {
                     <Route exact path='/contact' element={<Contact index={3} />} />
                 </Routes>
             </AnimatePresence>
-        </div>
     );
 }

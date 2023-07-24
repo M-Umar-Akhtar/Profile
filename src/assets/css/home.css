@@ -4,14 +4,18 @@
 *
 */
 
-.container{
+.container {
+    background-image: url('../images/R.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.gridContainer{
+.gridContainer {
+    background-color: var(--blackish);
     display: grid;
     width: 75%;
     height: 90%;
@@ -21,7 +25,7 @@
     margin: 30px 0px;
 }
 
-.nameSection{
+.nameSection {
     color: white;
     display: flex;
     justify-content: center;
@@ -29,14 +33,14 @@
 
 .aboutSection,
 .portfolioSection,
-.contactSection{ 
+.contactSection {
     text-decoration: none;
-    background-color: var(--less-blackish);
+    background-color: rgba(37, 37, 37,0.5);
     color: white;
-
+    transition: all 0.3s ease;
 }
 
-.links{
+.links {
     text-decoration: none;
     color: white;
     display: flex;
@@ -47,43 +51,49 @@
 
 #two,
 #four,
-#six{
+#six {
     color: var(--variable-color);
     transition: color 0.3s ease;
 }
 
 #one,
 #three,
-#five{
+#five {
     color: white;
     transition: color 0.3s ease;
 }
 
-.aboutSection:hover #one{
-    color:var(--variable-color);
+.aboutSection:hover,
+.portfolioSection:hover,
+.contactSection:hover{
+    background-color: rgba(0,0,0,0.1);
 }
 
-.aboutSection:hover #two{
-    color:white;
+.aboutSection:hover #one {
+    color: var(--variable-color);
 }
 
-.portfolioSection:hover #three{
-    color:var(--variable-color);
+.aboutSection:hover #two {
+    color: white;
 }
 
-.portfolioSection:hover #four{
-    color:white;
+.portfolioSection:hover #three {
+    color: var(--variable-color);
 }
 
-.contactSection:hover #five{
-    color:var(--variable-color);
+.portfolioSection:hover #four {
+    color: white;
 }
 
-.contactSection:hover #six{
-    color:white;
+.contactSection:hover #five {
+    color: var(--variable-color);
 }
 
-.detailsContainer{
+.contactSection:hover #six {
+    color: white;
+}
+
+.detailsContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,14 +101,14 @@
 
 }
 
-.headings{
+.headings {
     text-align: center;
     width: 100%;
     font-weight: bold;
     font-size: 3.5rem;
 }
 
-.nameSection h1{
+.nameSection h1 {
     text-align: center;
     width: 100%;
     font-weight: bold;
@@ -107,17 +117,62 @@
     margin-bottom: 0px;
 }
 
-.nameSection p{
+.nameSection p {
     text-align: center;
     font-size: 1.5rem;
     margin-top: 0px;
     margin-bottom: 0px;
 }
 
-.nameSection h2{
+.nameSection h2 {
     text-align: center;
     color: var(--variable-color);
     font-size: 1.5em;
     margin-bottom: 0px;
     margin-top: 0px;
+}
+
+@media (max-width: 860px){
+    .container{
+        height: 1000px;
+    }
+    .gridContainer{
+        grid-template-columns: auto;
+        height: 890px;
+    }
+    .nameSection,
+    .aboutSection,
+    .portfolioSection,
+    .contactSection{
+        height: 200px;
+    }
+}
+
+@media (max-width: 420px){
+    .container{
+        height: 900px;
+    }
+    .gridContainer{
+        grid-template-columns: auto;
+        height: 790px;
+    }
+    .nameSection,
+    .aboutSection,
+    .portfolioSection,
+    .contactSection{
+        height: 176px;
+    }
+
+    .headings{
+        font-size: 2rem;
+    }
+
+    .nameSection h1{
+        font-size: 2rem;
+    }
+
+    .nameSection p,
+    .nameSection h2{
+        font-size: 1rem;
+    }
 }

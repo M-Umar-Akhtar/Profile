@@ -39,7 +39,7 @@
 }
 
 .projectContainer {
-    background-color: var(--lowest-blackish);
+    background-color: var(--less-blackish);
     width: 0px;
     height: 0px;
     opacity: 0;
@@ -51,7 +51,6 @@
     left: 97%;
     color: var(--variable-color);
     font-size: 2em;
-    background-color: var(--less-blackish);
     border: none;
     outline: none;
 }
@@ -89,8 +88,7 @@
 
 .previewButton:hover {
     color: var(--variable-color);
-    border: 2px dotted var(--variable-color);
-    background-color: var(--less-blackish);
+    background-color: rgba(0,0,0,0.1);
 }
 
 /*
@@ -183,6 +181,5 @@
 
 .smallPreviewButton:hover {
     color: var(--variable-color);
-    border: 2px dotted var(--variable-color);
-    background-color: var(--variable-color-opacity);
+    background-color: rgba(0,0,0,0.1);
 }

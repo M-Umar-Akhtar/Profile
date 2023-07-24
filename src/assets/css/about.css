@@ -8,10 +8,30 @@
     margin-top: 30px;
     margin-bottom: 30px;
     color: white;
-    padding: 30px;
+    padding: 22px;
     /*border: 2px dotted var(--variable-color);*/
     transition: height 0.5s ease;
     position: relative;
+}
+
+.scrollable{
+    height: 71.5vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
+
+.scroll-snap-child {
+    scroll-snap-align: start;
+
+  }
+
+.scrollable::-webkit-scrollbar{
+    background-color: var(--less-blackish);
+    border-radius: 8px;
+}
+.scrollable::-webkit-scrollbar-thumb{
+    background-color: var(--variable-color);
+    border-radius: 8px;
 }
 
 .aboutMe .cross-button{
@@ -31,8 +51,8 @@
 .headingContainer h1{
     text-align: center;
     font-size: 4em;
-    margin-bottom: 8px;
-    margin-top: 8px;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .breakerContainer{
@@ -40,7 +60,7 @@
     justify-content: center;
     align-items: center;
     width:60%;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .hr{
@@ -57,6 +77,28 @@
 *
 */
 
+.info-grid{
+    display: flex;
+    margin-bottom: 120px;
+}
+
+.image-container{
+    display: flex;
+    /*background-image: url('../images/me.png');
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;*/
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px; 
+    width: 60%;
+}
+
+.image-container img{
+    object-fit: contain;
+    width: 90%;
+    height: 90%;
+}
 
 .infoContainer p{
     display: inline-block;
@@ -90,9 +132,7 @@
 
 .resumeButton:hover{
     color: var(--variable-color);
-    border: 2px dotted var(--variable-color);
-    background-color: var(--less-blackish);
-
+    background-color: rgba(0,0,0,0.1);
 }
 
 .customLinks{
@@ -109,7 +149,7 @@
 .card {
     /* Common styles for all components */
     border: 1px solid grey;
-    background-color: var(--less-blackish);
+    background-color: rgb(37, 37, 37);
     display: inline-block;
     width: 85%;
     height: 100%;
@@ -151,18 +191,6 @@
     opacity: 0.3;
     transition: top 0.5s ease, left 0.5s ease, z-index 0.5s ease,opacity 0.5s ease;
   }
-
-
-
-
-
-/*#edu,#skl,#cer{
-    border: 1px solid grey;
-    background-color: var(--less-blackish);
-    display: inline-block;
-    width: 80%;
-    height: 100%;
-}*/
 
 /*
 *
@@ -233,13 +261,6 @@
     padding-left: 10px;
     transition: color 0.3s, background-color 0.3s, border-color 0.3s; 
 }
-
-/*.navigationButton:hover{
-    color: white;
-    background-color: var(--variable-color);
-    border-color: var(--variable-color);
-}*/
-
 
 .cardsContainer{
     position: relative;
